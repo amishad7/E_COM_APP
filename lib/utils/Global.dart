@@ -16,7 +16,7 @@ List allProducts = [
     'data': [
       {
         "id": 1,
-        "title": "Macmini",
+        "title": "Mac mini",
         "price": 50000,
         "discountPercentage": 12.96,
         "rating": 5,
