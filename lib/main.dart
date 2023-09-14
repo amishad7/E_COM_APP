@@ -85,7 +85,7 @@ class _e_comerce_appState extends State<e_comerce_app> {
                         children: [
                           Text(
                             "${e['CatogeryName']}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.bold,
                             ),
@@ -136,25 +136,25 @@ class _e_comerce_appState extends State<e_comerce_app> {
                                               child: Container(
                                                 width: 65,
                                                 height: 34,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red.shade800,
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      bottomRight:
+                                                          Radius.circular(07),
+                                                    )),
                                                 child: Center(
                                                   child: Text(
                                                     '${e['discountPercentage']}%',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.w800,
                                                     ),
                                                   ),
                                                 ),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.red.shade800,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(10),
-                                                      bottomRight:
-                                                          Radius.circular(07),
-                                                    )),
                                               ),
                                             ),
                                           ),
@@ -199,7 +199,7 @@ class _e_comerce_appState extends State<e_comerce_app> {
                                                       color: Colors.amber,
                                                     ),
                                                     onRatingUpdate: (rating) {
-                                                      print(rating);
+                                                      // print(rating);
                                                     },
                                                   ),
                                                 ],
