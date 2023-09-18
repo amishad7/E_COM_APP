@@ -1,164 +1,211 @@
 import 'package:flutter/material.dart';
 
-class DeatailPage extends StatefulWidget {
-  DeatailPage({
-    super.key,
-  });
+class DetailPage extends StatefulWidget {
+  const DetailPage({super.key});
 
   @override
-  State<DeatailPage> createState() => _DeatailPageState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
-class _DeatailPageState extends State<DeatailPage> {
+class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-
-    double width = MediaQuery.of(context).size.width;
+    Map<String, dynamic> data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
-        actions: [
-          const Icon(
-            Icons.shopping_cart,
-            color: Colors.black,
-          ),
-        ],
         title: const Text(
-          "Deatil Page",
+          "Detail Page",
           style: TextStyle(color: Colors.black),
         ),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          splashRadius: 20,
+          icon: const Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.shopping_cart,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            height: height / 3,
-            width: height / 1,
-            padding: EdgeInsets.all(30),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    blurStyle: BlurStyle.outer,
-                    color: Colors.grey,
-                    blurRadius: 10,
-                    offset: Offset(0, -4)),
-              ],
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(30),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.red,
+        child: const Icon(Icons.add_shopping_cart),
+      ),
+      body: SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              alignment: Alignment.topCenter,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ...data['images']
+                        .map(
+                          (e) => SizedBox(
+                            height: 380,
+                            child: Image.network(
+                              '$e',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ],
+                ),
               ),
             ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Sony MDR-ZX110AP",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(width: 170),
-                    Text(
-                      "\$ 549",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
-                      ),
-                    ),
-                  ],
+            Container(
+              height: MediaQuery.of(context).size.height / 2.2,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    color: Colors.grey,
+                  ),
+                ],
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(40),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Headphone",
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
+              ),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 35, bottom: 24),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 250,
+                            child: Text(
+                              "${data['title']}",
+                              style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "\$ ${data['price']}",
+                            style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(width: 310),
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                    ),
-                    Text(
-                      "4.4",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
+                      const SizedBox(height: 2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${data['category']}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                          Text(
+                            "⭐️ ${data['rating']}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Brand",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Brand",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 170),
-                    Text(
-                      "Sony",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
+                      Text(
+                        "${data['brand']}",
+                        style: const TextStyle(
+                          fontSize: 22,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Stock",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Stock",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 170),
-                    Text(
-                      "23",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                      Text(
+                        "${data['stock']}",
+                        style: const TextStyle(
+                          fontSize: 22,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Description",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Description",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 170),
-                  ],
-                ),
-              ],
+                      const SizedBox(height: 10),
+                      Text(
+                        "${data['description']}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
