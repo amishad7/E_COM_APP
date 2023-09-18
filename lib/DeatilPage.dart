@@ -11,11 +11,11 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     Map data =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+        ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title:  Text(
           "Detail Page",
           style: TextStyle(color: Colors.black),
         ),
@@ -26,7 +26,7 @@ class _DetailPageState extends State<DetailPage> {
             Navigator.of(context).pop();
           },
           splashRadius: 20,
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back_rounded,
             color: Colors.black,
           ),
@@ -34,7 +34,7 @@ class _DetailPageState extends State<DetailPage> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon:  Icon(
               Icons.shopping_cart,
               color: Colors.black,
             ),
@@ -42,9 +42,11 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          
+        },
         backgroundColor: Colors.red,
-        child: const Icon(Icons.add_shopping_cart),
+        child:  Icon(Icons.add_shopping_cart),
       ),
       body: SizedBox(
         height: double.infinity,
@@ -75,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
             ),
             Container(
               height: MediaQuery.of(context).size.height / 2.2,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 color: Colors.white,
                 boxShadow: <BoxShadow>[
                   BoxShadow(
@@ -88,7 +90,7 @@ class _DetailPageState extends State<DetailPage> {
                   top: Radius.circular(40),
                 ),
               ),
-              padding: const EdgeInsets.only(
+              padding:  EdgeInsets.only(
                   left: 20, right: 20, top: 35, bottom: 24),
               alignment: Alignment.center,
               child: Column(
@@ -103,7 +105,7 @@ class _DetailPageState extends State<DetailPage> {
                             width: 250,
                             child: Text(
                               "${data['title']}",
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -111,7 +113,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           Text(
                             "\$ ${data['price']}",
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 25,
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
@@ -153,7 +155,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       Text(
                         "${data['brand']}",
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 22,
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
