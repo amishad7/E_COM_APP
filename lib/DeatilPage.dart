@@ -11,6 +11,9 @@ class detail_page extends StatefulWidget {
 class _detail_pageState extends State<detail_page> {
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> d =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     double height = MediaQuery.of(context).size.height;
 
     double width = MediaQuery.of(context).size.width;
@@ -36,21 +39,44 @@ class _detail_pageState extends State<detail_page> {
                 Navigator.of(context).pushNamed('third');
               });
             },
-            child: const Icon(
-              Icons.shopping_cart,
-              color: Colors.black,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: const Alignment(0, -1),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 10,
+                    child: Text(
+                      "${global.getqty}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.black,
+                ),
+              ],
             ),
           ),
         ],
         title: const Text(
-          "Deatil Page",
+          "Detail Page",
           style: TextStyle(color: Colors.black),
         ),
       ),
       backgroundColor: Colors.white,
       floatingActionButton: GestureDetector(
         onTap: () {
-          setState(() {});
+          setState(() {
+            global.cartProducts.add(d);
+            global.getqty++;
+            global.totalPrice = global.TotalPrice();
+          });
         },
         child: const CircleAvatar(
             backgroundColor: Colors.red,
@@ -60,161 +86,171 @@ class _detail_pageState extends State<detail_page> {
               color: Colors.white,
             )),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            height: height / 2.6,
-            width: width / 1,
-            padding:
-                const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    // blurStyle: BlurStyle.outer,
-                    spreadRadius: 0,
-                    color: Colors.grey,
-                    blurRadius: 5,
-                    offset: Offset(0, -4)),
-              ],
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(30),
-              ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(
+              '${d['images']}',
             ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Sony MDR-ZX110AP",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    //   SizedBox(width: 160),
-                    Text(
-                      "\$ 549",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
-                      ),
-                    ),
-                  ],
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              height: height / 2.6,
+              width: width / 1,
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 30, bottom: 20),
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      // blurStyle: BlurStyle.outer,
+                      spreadRadius: 0,
+                      color: Colors.grey,
+                      blurRadius: 5,
+                      offset: Offset(0, -4)),
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(30),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Headphone",
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    //       SizedBox(width: 310),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${d['title']}",
+                        style: const TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        Text(
-                          "4.4",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey,
+                      ),
+                      //   SizedBox(width: 160),
+                      Text(
+                        "\$ ${d['price']}",
+                        style: const TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Headphone",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      //       SizedBox(width: 310),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Brand",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      "Sony",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Stock",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      "23",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Description",
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        SizedBox(
-                          height: 70,
-                          width: 350,
-                          child: Text(
-                            'Samsung offers a range of Android-based tablets under the Galaxy Tab series, known for their versatility and high-resolution displays.',
+                          Text(
+                            "${d['rating']}",
                             style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Brand",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "${d['brand']}",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Stock",
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "${d['stock']}",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Description",
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+                          SizedBox(height: 20),
+                          SizedBox(
+                            height: 70,
+                            width: 350,
+                            child: Text(
+                              "${d['description']}",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

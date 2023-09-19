@@ -13,6 +13,11 @@ class global {
           "brand": "sony",
           "description": "Latest version with new friendly features",
           "thumbnail": "assets/Images/images (1).jpeg",
+          "images": [
+            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (1).jpeg",
+            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (1).jpeg",
+            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (2).jpeg",
+          ]
         },
         {
           "id": 2,
@@ -77,6 +82,9 @@ class global {
           "thumbnail": "assets/Images/images (1).jpeg",
           "description":
               'Known for its premium build quality and iOS operating system, Apples iPad is a popular choice for both productivity and entertainment.',
+          "images": [
+            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/1.jpeg",
+          ],
         },
         {
           "id": 2,
@@ -387,4 +395,15 @@ class global {
       ],
     },
   ];
+  static int getqty = 0;
+  static num totalPrice = 0;
+  static TotalPrice() {
+    num sum = 0;
+    cartProducts.forEach((e) {
+      sum = sum + e['price'];
+    });
+    return sum;
+  }
+
+  static List cartProducts = [];
 }

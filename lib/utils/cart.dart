@@ -1,3 +1,4 @@
+import 'package:e_com_app/utils/Global.dart';
 import 'package:flutter/material.dart';
 
 class cart_page extends StatefulWidget {
@@ -39,65 +40,81 @@ class _cart_pageState extends State<cart_page> {
           Expanded(
             flex: 8,
             child: SingleChildScrollView(
-              child: Card(
-                child: Container(
-                  margin: EdgeInsets.only(top: 10),
-                  height: height / 7,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          color: Colors.blue,
-                          height: height / 7,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "IPHONE x",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "\$ 455",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+              child: Column(
+                children: [
+                  ...global.cartProducts.map((e) {
+                    return Card(
+                      child: Container(
+                        margin: EdgeInsets.only(top: 10),
+                        height: height / 7,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                color: Colors.blue,
+                                height: height / 7,
                               ),
-                              Text(
-                                "DELETE",
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.underline,
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${e['title']}",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 20),
+                                        Text(
+                                          "\$ ${e['price']}",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          global.cartProducts.remove(e);
+                                          global.totalPrice -= e['price'];
+                                        });
+                                      },
+                                      child: const Text(
+                                        "DELETE",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
+                    );
+                  }).toList(),
+                ],
               ),
             ),
           ),
@@ -109,7 +126,7 @@ class _cart_pageState extends State<cart_page> {
                 left: 20,
               ),
               color: Colors.red,
-              child: const Row(
+              child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -121,7 +138,7 @@ class _cart_pageState extends State<cart_page> {
                       ),
                     ),
                     Text(
-                      "\$ 1440.0",
+                      "\$ ${global.totalPrice}",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
