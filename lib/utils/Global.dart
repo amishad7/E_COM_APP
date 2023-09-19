@@ -12,11 +12,11 @@ class global {
           "stock": 67,
           "brand": "sony",
           "description": "Latest version with new friendly features",
-          "thumbnail": "assets/Images/images (1).jpeg",
+          "thumbnail": "",
           "images": [
-            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (1).jpeg",
-            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (1).jpeg",
-            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/images (2).jpeg",
+            "",
+            "",
+            "",
           ]
         },
         {
@@ -29,7 +29,12 @@ class global {
           "brand": "sony",
           "description": "Latest version with new friendly features",
           "thumbnail":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/gsmarena_001.jpg',
+              '',
+           "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 3,
@@ -41,7 +46,12 @@ class global {
           "brand": "JBL",
           "description": "Latest version with new friendly features",
           "thumbnail":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/images.jpeg',
+              '',
+           "images": [
+            "",
+            "",
+            "",
+          ]
         },
         {
           "id": 4,
@@ -52,8 +62,14 @@ class global {
           "stock": 78,
           "brand": "Apple",
           "description": "Latest version with new friendly features",
-          "thumbnail": 'assets/Images/download (1).jpeg',
+          "thumbnail": '',
+         "images": [
+            "",
+            "",
+            "",
+          ]
         },
+        
         {
           "id": 5,
           "title": "Bose QuietComfort 35 II",
@@ -64,7 +80,12 @@ class global {
           "brand": "BOSE",
           "description": "Latest version with new friendly features",
           "thumbnail":
-              "/Users/r32/StudioProjects/E_COM_APP/assets/Images/download.jpeg",
+              "",
+         "images": [
+            "",
+            "",
+            "",
+          ]
         },
       ],
     },
@@ -79,12 +100,14 @@ class global {
           "rating": 5.0,
           "stock": 98,
           "brand": "Apple",
-          "thumbnail": "assets/Images/images (1).jpeg",
+          "thumbnail": "",
           "description":
               'Known for its premium build quality and iOS operating system, Apples iPad is a popular choice for both productivity and entertainment.',
           "images": [
-            "/Users/r32/StudioProjects/E_COM_APP/assets/Images/tablets/1.jpeg",
-          ],
+            "",
+            "",
+            "",
+          ]
         },
         {
           "id": 2,
@@ -95,9 +118,14 @@ class global {
           "stock": 87,
           "brand": "Samsung",
           "thumbnail":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/gsmarena_001.jpg',
+              '',
           "description":
               'Samsung offers a range of Android-based tablets under the Galaxy Tab series, known for their versatility and high-resolution displays.',
+        "images": [
+            "",
+            "",
+            "",
+          ]
         },
         {
           "id": 3,
@@ -108,9 +136,14 @@ class global {
           "stock": 77,
           "brand": "Amzon",
           "thumbnail":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/images.jpeg',
+              '',
           "description":
               'Amazons Fire Tablets are affordable options with access to a wide range of apps, e-books, and Amazon services like Kindle and Prime Video.',
+           "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 4,
@@ -122,7 +155,12 @@ class global {
           "brand": "Microsoft",
           "description":
               'Microsofts Surface tablets are known for their productivity features and the ability to run Windows applications, making them suitable for work and creativity.',
-          "thumbnail": 'assets/Images/download (1).jpeg',
+          "thumbnail": '',
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 5,
@@ -135,7 +173,12 @@ class global {
           "description":
               'Lenovo offers a variety of Android-based tablets under the Tab series, known for their sleek design and performance.',
           "thumbnail":
-              "/Users/r32/StudioProjects/E_COM_APP/assets/Images/download.jpeg",
+              "",
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
       ],
     },
@@ -150,9 +193,14 @@ class global {
           "rating": 5.00,
           "stock": 97,
           "brand": "Apple",
-          "thumbnail": "assets/Images/images (1).jpeg",
+          "thumbnail": "",
           "description":
               'Known for its premium build quality and iOS operating system, Apples iPad is a popular choice for both productivity and entertainment.',
+       "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 2,
@@ -163,9 +211,14 @@ class global {
           "stock": 90,
           "brand": "Samsung",
           "images":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/gsmarena_001.jpg',
+              '',
           "description":
               'Samsung offers a range of Android-based tablets under the Galaxy Tab series, known for their versatility and high-resolution displays.',
+       "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 3,
@@ -176,9 +229,14 @@ class global {
           "stock": 87,
           "brand": "Google",
           "images":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/images.jpeg',
+              '',
           "description":
               'Amazons Fire Tablets are affordable options with access to a wide range of apps, e-books, and Amazon services like Kindle and Prime Video.',
+      "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 4,
@@ -201,7 +259,12 @@ class global {
           "description":
               'Lenovo offers a variety of Android-based tablets under the Tab series, known for their sleek design and performance.',
           "thumbnail":
-              "/Users/r32/StudioProjects/E_COM_APP/assets/Images/download.jpeg",
+              "",
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
       ],
     },
@@ -218,8 +281,14 @@ class global {
           "stock": 123,
           "brand": "OPPO",
           "category": "smartphones",
-          "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+          "thumbnail": "",
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
+        
         {
           "id": 2,
           "title": "Huawei P30",
@@ -231,7 +300,7 @@ class global {
           "stock": 32,
           "brand": "Huawei",
           "category": "smartphones",
-          "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+          "thumbnail": "",
         },
         {
           "id": 3,
@@ -364,8 +433,11 @@ class global {
           "rating": 4.6,
           "stock": 87,
           "brand": "Google",
-          "images":
-              '/Users/r32/StudioProjects/E_COM_APP/assets/Images/images.jpeg',
+        "images": [
+            "",
+            "",
+            "",
+          ],
           "description":
               'Amazons Fire Tablets are affordable options with access to a wide range of apps, e-books, and Amazon services like Kindle and Prime Video.',
         },
@@ -379,7 +451,12 @@ class global {
           "brand": "MI",
           "description":
               'Microsofts Surface tablets are known for their productivity features and the ability to run Windows applications, making them suitable for work and creativity.',
-          "thumbnail": 'assets/Images/download (1).jpeg',
+          "thumbnail": '',
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
         {
           "id": 5,
@@ -390,7 +467,12 @@ class global {
           "description":
               'Lenovo offers a variety of Android-based tablets under the Tab series, known for their sleek design and performance.',
           "thumbnail":
-              "/Users/r32/StudioProjects/E_COM_APP/assets/Images/download.jpeg",
+              "",
+          "images": [
+            "",
+            "",
+            "",
+          ],
         },
       ],
     },
