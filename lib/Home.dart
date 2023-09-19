@@ -399,7 +399,8 @@ class _home_pageState extends State<home_page> {
                                           children: [
                                             ...data.map(
                                               (e) {
-                                                return GestureDetector(
+                                                return (e['price'] >= start &&
+                                                    e['price'] <= end) ? GestureDetector(
                                                   onTap: () {
                                                     setState(
                                                       () {
@@ -562,7 +563,7 @@ class _home_pageState extends State<home_page> {
                                                       ],
                                                     ),
                                                   ),
-                                                );
+                                                ) : Container();
                                               },
                                             ).toList(),
                                           ],
