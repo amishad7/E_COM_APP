@@ -38,8 +38,67 @@ class _cart_pageState extends State<cart_page> {
         children: [
           Expanded(
             flex: 8,
-            child: Container(
-              child: Column(children: []),
+            child: SingleChildScrollView(
+              child: Card(
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  height: height / 7,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          color: Colors.blue,
+                          height: height / 7,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "IPHONE x",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Text(
+                                    "\$ 455",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "DELETE",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
           Expanded(

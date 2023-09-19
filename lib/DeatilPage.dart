@@ -1,3 +1,4 @@
+import 'package:e_com_app/utils/Global.dart';
 import 'package:flutter/material.dart';
 
 class detail_page extends StatefulWidget {
@@ -47,13 +48,26 @@ class _detail_pageState extends State<detail_page> {
         ),
       ),
       backgroundColor: Colors.white,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          setState(() {});
+        },
+        child: const CircleAvatar(
+            backgroundColor: Colors.red,
+            radius: 27,
+            child: Icon(
+              Icons.shopping_cart_checkout_rounded,
+              color: Colors.white,
+            )),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
             height: height / 2.6,
             width: width / 1,
-            padding: EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -203,6 +217,5 @@ class _detail_pageState extends State<detail_page> {
         ],
       ),
     );
-    ;
   }
 }

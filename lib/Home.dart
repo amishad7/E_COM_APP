@@ -1,5 +1,6 @@
 import 'package:e_com_app/utils/Global.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class home_page extends StatefulWidget {
@@ -11,6 +12,7 @@ class home_page extends StatefulWidget {
 
 class _home_pageState extends State<home_page> {
   @override
+  num? dropdownvalue = null;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +38,53 @@ class _home_pageState extends State<home_page> {
         children: [
           Expanded(
             flex: 1,
-            child: Row(children: []),
+            child: Container(
+              padding: const EdgeInsets.only(left: 20),
+              child: Row(
+                children: [
+                  DropdownButton(
+                    value: dropdownvalue,
+                    hint: const Text("Select Category..."),
+                    items: global.allProducts.map(
+                      (e) {
+                        return DropdownMenuItem(
+                          value: global.allProducts.indexOf(e),
+                          child: Text("${e['CategoryName']}"),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (val) {
+                      setState(
+                        () {
+                          dropdownvalue = val!;
+                        },
+                      );
+                    },
+                  ),
+                  Visibility(
+                    visible: (dropdownvalue != null) ? true : false,
+                    child: ActionChip(
+                      label: const Row(
+                        children: [
+                          Icon(Icons.clear, size: 15),
+                          Text(
+                            'Clear',
+                            style: TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          dropdownvalue = null;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             flex: 9,
@@ -56,7 +104,7 @@ class _home_pageState extends State<home_page> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${e['CatogeryName']}",
+                          "${e['CategoryName']}",
                           style: const TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
@@ -107,7 +155,7 @@ class _home_pageState extends State<home_page> {
                                                 ),
                                                 image: DecorationImage(
                                                   image: AssetImage(
-                                                      "${e['images']}"),
+                                                      "${e['thumbnail']}"),
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
