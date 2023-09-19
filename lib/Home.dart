@@ -13,7 +13,7 @@ class home_page extends StatefulWidget {
 class _home_pageState extends State<home_page> {
   @override
   int? dropdownvalue;
-  double? sliderval;
+
   int start = 0;
   int end = 1000;
   Widget build(BuildContext context) {
