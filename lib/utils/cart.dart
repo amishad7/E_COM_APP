@@ -22,7 +22,7 @@ class _cart_pageState extends State<cart_page> {
         leading: IconButton(
           onPressed: () {
             setState(() {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/");
             });
           },
           icon: const Icon(
@@ -44,74 +44,88 @@ class _cart_pageState extends State<cart_page> {
               child: Column(
                 children: [
                   ...global.cartProducts.map((e) {
-                    return Card(
-                      child: Container(
-                        margin: EdgeInsets.only(top: 10),
-                        height: height / 7,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: height / 7,
-                                child: Image.network(e['thumbnail']),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${e['title']}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(height: 20),
-                                        Text(
-                                          "\$ ${e['price']}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          global.cartProducts.remove(e);
-                                          global.totalPrice -= e['price'];
-                                          global.getqty--;
-                                        });
-                                      },
-                                      child: const Text(
-                                        "DELETE",
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                    return GestureDetector(
+                      onTap: () {
+                        setState(
+                          () {
+                            Navigator.of(context).pushNamed(
+                              'second',
+                              arguments: e,
+                            );
+                          },
+                        );
+                      },
+                      child: Card(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10),
+                          height: height / 7,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  height: height / 7,
+                                  child: Image.network(e['thumbnail']),
                                 ),
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${e['title']}",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            "\$ ${e['price']}",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            global.cartProducts.remove(e);
+                                            global.totalPrice -= e['price'];
+                                            global.getqty--;
+                                          });
+                                        },
+                                        child: const Text(
+                                          "DELETE",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.normal,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

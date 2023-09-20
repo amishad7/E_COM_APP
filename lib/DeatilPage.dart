@@ -100,7 +100,6 @@ class _DetailPageState extends State<DetailPage> {
                           (e) => Container(
                             height: 450,
                             width: 400,
-                            color: Colors.red,
                             child: Image.network(
                               '$e',
                               fit: BoxFit.cover,

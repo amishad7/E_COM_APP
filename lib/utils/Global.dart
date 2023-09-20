@@ -319,10 +319,11 @@ class global {
           "rating": 4.3,
           "stock": 123,
           "brand": "OPPO",
-          "thumbnail": "assets/Images/oppo_1.png",
+          "thumbnail":
+              "https://newgadgetsindia.com/wp-content/uploads/2023/05/OPPO-F23-5G-Cool-Black.webp",
           "images": [
-            "assets/Images/oppo_1.png",
-            "assets/Images/oppo_1.png",
+            "https://newgadgetsindia.com/wp-content/uploads/2023/05/OPPO-F23-5G-Cool-Black.webp",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNzUYdNyoBgIELIrf94UGAcwxkURkzFX1daQ&usqp=CAU",
           ],
         },
         {
@@ -337,10 +338,11 @@ class global {
           "stock": 32,
           "brand": "Huawei",
           "category": "smartphones",
-          "thumbnail": "assets/Images/huawei-p30-2.png",
+          "thumbnail":
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriws_7ln4Ikh7nyZanMIvB1X28HlFI_07iw&usqp=CAU",
           "images": [
-            "assets/Images/huawei-p30-2.png",
-            "assets/Images/huawei-p30-2.png",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriws_7ln4Ikh7nyZanMIvB1X28HlFI_07iw&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQghpsfRxJgyzoS5foh4cCKsCb7H5C3pSm9Pg&usqp=CAU",
           ],
         },
         {
