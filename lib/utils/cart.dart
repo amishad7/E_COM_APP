@@ -17,6 +17,7 @@ class _cart_pageState extends State<cart_page> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        elevation: 1,
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
@@ -52,8 +53,8 @@ class _cart_pageState extends State<cart_page> {
                             Expanded(
                               flex: 2,
                               child: Container(
-                                color: Colors.blue,
                                 height: height / 7,
+                                child: Image.network(e['thumbnail']),
                               ),
                             ),
                             Expanded(
@@ -93,6 +94,7 @@ class _cart_pageState extends State<cart_page> {
                                         setState(() {
                                           global.cartProducts.remove(e);
                                           global.totalPrice -= e['price'];
+                                          global.getqty--;
                                         });
                                       },
                                       child: const Text(

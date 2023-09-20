@@ -1,34 +1,35 @@
 import 'package:e_com_app/utils/Global.dart';
 import 'package:flutter/material.dart';
 
-class detail_page extends StatefulWidget {
-  const detail_page({super.key});
+class DetailPage extends StatefulWidget {
+  const DetailPage({super.key});
 
   @override
-  State<detail_page> createState() => _detail_pageState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
-class _detail_pageState extends State<detail_page> {
+class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> d =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
-    double height = MediaQuery.of(context).size.height;
-
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        title: const Text(
+          "Detail Page",
+          style: TextStyle(color: Colors.black),
+        ),
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            setState(() {
-              Navigator.of(context).pop();
-            });
+            Navigator.of(context).pop();
           },
+          splashRadius: 20,
           icon: const Icon(
-            Icons.navigate_before,
+            Icons.arrow_back_rounded,
             color: Colors.black,
           ),
         ),
@@ -64,10 +65,6 @@ class _detail_pageState extends State<detail_page> {
             ),
           ),
         ],
-        title: const Text(
-          "Detail Page",
-          style: TextStyle(color: Colors.black),
-        ),
       ),
       backgroundColor: Colors.white,
       floatingActionButton: GestureDetector(
@@ -86,58 +83,119 @@ class _detail_pageState extends State<detail_page> {
               color: Colors.white,
             )),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              '${d['images']}',
-            ),
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+      body: SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
             Container(
-              height: height / 2.6,
-              width: width / 1,
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 30, bottom: 20),
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      // blurStyle: BlurStyle.outer,
-                      spreadRadius: 0,
-                      color: Colors.grey,
-                      blurRadius: 5,
-                      offset: Offset(0, -4)),
-                ],
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30),
+              alignment: Alignment.topCenter,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ...d['images']
+                        .map(
+                          (e) => Container(
+                            height: 450,
+                            width: 400,
+                            color: Colors.red,
+                            child: Image.network(
+                              '$e',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ],
                 ),
               ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 2.2,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    color: Colors.grey,
+                  ),
+                ],
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(40),
+                ),
+              ),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 35, bottom: 24),
+              alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 250,
+                            child: Text(
+                              "${d['title']}",
+                              style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "\$ ${d['price']}",
+                            style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${d['CategoryName']}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                          Text(
+                            "⭐️ ${d['rating']}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${d['title']}",
-                        style: const TextStyle(
-                          fontSize: 23,
+                      const Text(
+                        "Brand",
+                        style: TextStyle(
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
                         ),
                       ),
-                      //   SizedBox(width: 160),
                       Text(
-                        "\$ ${d['price']}",
+                        "${d['brand']}",
                         style: const TextStyle(
-                          fontSize: 23,
+                          fontSize: 22,
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
                         ),
                       ),
                     ],
@@ -146,109 +204,45 @@ class _detail_pageState extends State<detail_page> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Headphone",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      //       SizedBox(width: 310),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ),
-                          Text(
-                            "${d['rating']}",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Brand",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        "${d['brand']}",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
                         "Stock",
                         style: TextStyle(
-                          fontSize: 23,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
                         ),
                       ),
                       Text(
                         "${d['stock']}",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        style: const TextStyle(
+                          fontSize: 22,
                           color: Colors.grey,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Description",
-                            style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          SizedBox(
-                            height: 70,
-                            width: 350,
-                            child: Text(
-                              "${d['description']}",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
+                      const Text(
+                        "Description",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "${d['description']}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey.shade700,
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:e_com_app/utils/Global.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class home_page extends StatefulWidget {
@@ -21,13 +20,13 @@ class _home_pageState extends State<home_page> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
-          GestureDetector(
-            onTap: () {
+          IconButton(
+            onPressed: () {
               setState(() {
                 Navigator.of(context).pushNamed('third');
               });
             },
-            child: const Icon(
+            icon: Icon(
               Icons.shopping_cart,
               color: Colors.black,
             ),
@@ -259,8 +258,9 @@ class _home_pageState extends State<home_page> {
                                                           ),
                                                           image:
                                                               DecorationImage(
-                                                            image: AssetImage(
-                                                                "${e['thumbnail']}"),
+                                                            image: NetworkImage(
+                                                              "${e['thumbnail']}",
+                                                            ),
                                                             fit: BoxFit.cover,
                                                           ),
                                                         ),
@@ -335,7 +335,8 @@ class _home_pageState extends State<home_page> {
                                                               ),
                                                             ),
                                                             RatingBar.builder(
-                                                              initialRating: 3,
+                                                              initialRating:
+                                                                  e['rating'],
                                                               minRating: 1,
                                                               direction: Axis
                                                                   .horizontal,
@@ -344,6 +345,7 @@ class _home_pageState extends State<home_page> {
                                                               itemCount: 5,
                                                               ignoreGestures:
                                                                   true,
+                                                              maxRating: 5,
                                                               itemSize: 18,
                                                               itemBuilder:
                                                                   (context,
@@ -400,170 +402,180 @@ class _home_pageState extends State<home_page> {
                                             ...data.map(
                                               (e) {
                                                 return (e['price'] >= start &&
-                                                    e['price'] <= end) ? GestureDetector(
-                                                  onTap: () {
-                                                    setState(
-                                                      () {
-                                                        Navigator.of(context)
-                                                            .pushNamed(
-                                                          'second',
-                                                          arguments: e,
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 190,
-                                                    height: 290,
-                                                    margin:
-                                                        const EdgeInsets.all(
-                                                            10),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      color: Colors.white,
-                                                      boxShadow: const [
-                                                        BoxShadow(
-                                                          color: Colors.grey,
-                                                          blurRadius: 0.1,
-                                                          spreadRadius: 0.1,
-                                                          offset: Offset(1, 1),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
+                                                        e['price'] <= end)
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          setState(
+                                                            () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pushNamed(
+                                                                'second',
+                                                                arguments: e,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Container(
+                                                          width: 190,
+                                                          height: 290,
+                                                          margin:
+                                                              const EdgeInsets
+                                                                  .all(10),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
                                                                     .circular(
-                                                                        20),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        20),
+                                                                        25),
+                                                            color: Colors.white,
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                color:
+                                                                    Colors.grey,
+                                                                blurRadius: 0.1,
+                                                                spreadRadius:
+                                                                    0.1,
+                                                                offset: Offset(
+                                                                    1, 1),
                                                               ),
-                                                              image:
-                                                                  DecorationImage(
-                                                                image: AssetImage(
-                                                                    "${e['thumbnail']}"),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                            alignment: Alignment
-                                                                .topLeft,
-                                                            child: Container(
-                                                              width: 65,
-                                                              height: 34,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      color: Colors
-                                                                          .red
-                                                                          .shade800,
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(10),
-                                                                        bottomRight:
-                                                                            Radius.circular(07),
-                                                                      )),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  '${e['discountPercentage']}%',
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w800,
+                                                            ],
+                                                          ),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              20),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              20),
+                                                                    ),
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          "${e['thumbnail']}"),
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  child:
+                                                                      Container(
+                                                                    width: 65,
+                                                                    height: 34,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                            color:
+                                                                                Colors.red.shade800,
+                                                                            borderRadius: const BorderRadius.only(
+                                                                              topLeft: Radius.circular(10),
+                                                                              bottomRight: Radius.circular(07),
+                                                                            )),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '${e['discountPercentage']}%',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontWeight:
+                                                                              FontWeight.w800,
+                                                                        ),
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
+                                                              Expanded(
+                                                                flex: 1,
+                                                                child:
+                                                                    Container(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          10),
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${e['title']}',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.w700,
+                                                                          fontSize:
+                                                                              15,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        '\$ ${e['price']}',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontSize:
+                                                                              18,
+                                                                        ),
+                                                                      ),
+                                                                      RatingBar
+                                                                          .builder(
+                                                                        initialRating:
+                                                                            3,
+                                                                        minRating:
+                                                                            1,
+                                                                        direction:
+                                                                            Axis.horizontal,
+                                                                        allowHalfRating:
+                                                                            true,
+                                                                        itemCount:
+                                                                            5,
+                                                                        ignoreGestures:
+                                                                            true,
+                                                                        itemSize:
+                                                                            18,
+                                                                        itemBuilder:
+                                                                            (context, _) =>
+                                                                                const Icon(
+                                                                          Icons
+                                                                              .star,
+                                                                          color:
+                                                                              Colors.amber,
+                                                                        ),
+                                                                        onRatingUpdate:
+                                                                            (rating) {
+                                                                          // print(rating);
+                                                                        },
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          flex: 1,
-                                                          child: Container(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(10),
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  '${e['title']}',
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    fontSize:
-                                                                        15,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  '\$ ${e['price']}',
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        18,
-                                                                  ),
-                                                                ),
-                                                                RatingBar
-                                                                    .builder(
-                                                                  initialRating:
-                                                                      3,
-                                                                  minRating: 1,
-                                                                  direction: Axis
-                                                                      .horizontal,
-                                                                  allowHalfRating:
-                                                                      true,
-                                                                  itemCount: 5,
-                                                                  ignoreGestures:
-                                                                      true,
-                                                                  itemSize: 18,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                              _) =>
-                                                                          const Icon(
-                                                                    Icons.star,
-                                                                    color: Colors
-                                                                        .amber,
-                                                                  ),
-                                                                  onRatingUpdate:
-                                                                      (rating) {
-                                                                    // print(rating);
-                                                                  },
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ) : Container();
+                                                      )
+                                                    : Container();
                                               },
                                             ).toList(),
                                           ],
